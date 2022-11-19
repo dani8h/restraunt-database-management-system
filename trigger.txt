@@ -1,0 +1,26 @@
+trigger 
+check before placing an order if the required ingredients are available
+
+
+DELIMITER $$
+DROP TRIGGER place_order;
+CREATE TRIGGER IF NOT EXISTS place_order BEFORE INSERT ON bill
+FOR EACH ROW
+BEGIN
+DECLARE err VARCHAR(30);
+SET err = ('Not enough ingredients to prepare food');
+IF(
+SELECT SUM(ingredients.avail_quantity) FROM
+recepie JOIN ingredients ON (recepie.f_id = new.f_id AND 
+ingredients.ingr_id = recepie.ingr_id) <
+(SELECT SUM(recepie.quantity) FROM recepie where f_id = new.f_id))
+THEN
+SIGNAL SQLSTATE '45000'
+SET MESSAGE_TEXT = err;
+END IF;
+END $$
+DELIMITER ;
+
+
+
+

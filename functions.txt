@@ -1,0 +1,26 @@
+update inventory when placing order
+
+DELIMITER $$
+CREATE FUNCTION update_inventory(, q int)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+
+update ingredients set ingredients.avail_quantity = ingredients.avail_quantity - q where ingr_id = i_id;
+RETURN q;
+END;
+$$
+
+DELIMITER ;
+
+
+create trigger on insert-
+
+f_id
+update avail_quantity = avail_quantity - 
+select ingr_id, quantity from recipe where recipe.fid=NEW.fid 
+
+
+UPDATE table ingredients,recepie,bill set ingredients.avail_quantity = ingredients.avail_quantity - (recepie.quantity*bill.quantity) where ingredients.ingr_id = recepie.ingr_id AND recepie.f_id = bill.f_id AND
+recepie.f_id IN
+(SELECT )

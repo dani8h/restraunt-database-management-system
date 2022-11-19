@@ -1,0 +1,21 @@
+JOIN  6 questions
+2 inner 
+2 nested 
+2 corelated
+
+1. return all food prepared by chef(emp_id)
+
+SELECT food_items.f_id, food_items.f_name from food_items JOIN chef_preps_food where emp_id = "1001" AND chef_preps_food.f_id = food_items.f_id;
+
+
+2. All food items served to table_no(basically generating bill)
+
+SELECT food_items.f_id, food_items.f_name, bill.quantity FROM bill join food_items where bill.f_id = food_items.f_id AND bill.table_no = 1;
+
+3.List of ingredients used in food A
+
+SELECT ingredients.ingr_id, ingredients.ingr_name from ingredients JOIN recepie where ingredients.ingr_id = recepie.ingr_id AND f_id = 1321;
+
+4. Food served by waiter A
+
+SELECT food_items.f_id, food_items.f_name from food_items where food_items.f_id in(select bill.f_id from bill join tables where bill.table_no = tables.table_no AND tables.w_id = 201);

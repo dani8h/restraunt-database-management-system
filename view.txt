@@ -1,0 +1,9 @@
+create view of dishes that cost more than 150 rupees
+
+CREATE VIEW IF NOT EXISTS expensive_foods(food_id, food_name, foodprice)AS 
+SELECT food_items.f_id, food_items.f_name, food_items.price from food_items where price >= 150;
+
+
+create view of all the employees
+
+CREATE VIEW IF NOT EXISTS all_employees (emp_id, emp_name) AS SELECT chef.emp_id, chef.emp_name from chef UNION SELECT waiter.w_id, waiter.w_name from waiter;

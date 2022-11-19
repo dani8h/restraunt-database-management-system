@@ -1,0 +1,12 @@
+  
+
+1. count number of ingredients required for dish a
+
+SELECT f_id, COUNT(*) AS "No. of ingredients" from recepie GROUP BY f_id;
+
+2. Amount of time worked by the chefs
+SELECT chef_preps_food.emp_id, SUM(food_items.prep_time) AS "time worked" from chef_preps_food JOIN food_items where chef_preps_food.f_id = food_items.f_id GROUP BY chef_preps_food.emp_id;
+
+3.generate bill for the table
+
+SELECT bill.table_no, SUM(food_items.price) AS "total bill" from bill JOIN food_items where bill.table_no = 1 AND bill.f_id = food_items.f_id;

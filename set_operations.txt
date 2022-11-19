@@ -1,0 +1,8 @@
+1. UNION: Display all tables waited by waiter a and waiter b
+
+
+SELECT tables.w_id, tables.table_no from tables where w_id = 311 UNION SELECT tables.w_id, tables.table_no from tables where w_id = 266;
+
+2.EXCEPT: Exclude all the food prepared by chef A
+
+SELECT food_items.f_id, food_items.f_name from food_items EXCEPT SELECT food_items.f_id, food_items.f_name from  food_items JOIN chef_preps_food where chef_preps_food.f_id = food_items.f_id AND chef_preps_food.emp_id = 1001;
